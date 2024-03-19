@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
-import { getMonth } from "../../helpers/Date";
+// import { getMonth } from "../../helpers/Date";
 
 import "./style.scss";
 
@@ -10,12 +10,24 @@ const Slider = () => {
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
+  
+
+  // Permet de gérer le défilement automatique du slider chaque 5s
+  let timoutId
   const nextCard = () => {
-    setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
+    timoutId = setTimeout(
+      () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
       5000
     );
   };
+
+  // Permet de gérer l'état clicked du bouton 
+  const handleInputClicked = (radioIdx) => {
+    setIndex(radioIdx)
+    clearTimeout(timoutId)
+  }
+
+  // Gérer le rendu
   useEffect(() => {
     nextCard();
   });
@@ -23,7 +35,7 @@ const Slider = () => {
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
         <>
-          <div
+          <article
             key={event.title}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
@@ -34,10 +46,11 @@ const Slider = () => {
               <div className="SlideCard__description">
                 <h3>{event.title}</h3>
                 <p>{event.description}</p>
-                <div>{getMonth(new Date(event.date))}</div>
+                {/* Utilisation de l'objet Date en js pour obtenir le mois depuis la date """""format ISO 8601""""" */}
+                <div>{new Date(event.date).toLocaleString('default', { month: 'long' })}</div>
               </div>
             </div>
-          </div>
+          </article>
           <div className="SlideCard__paginationContainer">
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
@@ -45,7 +58,8 @@ const Slider = () => {
                   key={`${event.id}`}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+                  checked={index === radioIdx}
+                  onClick={() => handleInputClicked(radioIdx)}
                 />
               ))}
             </div>
