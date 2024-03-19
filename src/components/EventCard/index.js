@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { getMonth } from "../../helpers/Date";
+// import { getMonth } from "../../helpers/Date";
 
 import "./style.scss";
 
@@ -23,7 +23,8 @@ const EventCard = ({
       </div>
       <div className="EventCard__descriptionContainer">
         <div className="EventCard__title">{title}</div>
-        <div className="EventCard__month">{getMonth(date)}</div>
+        {/* Ajout du toLocaleString pour afficher les mois en camel case */}
+        <div className="EventCard__month">{date.toLocaleString('default', { month: 'long' })}</div> 
       </div>
     </div>
   );

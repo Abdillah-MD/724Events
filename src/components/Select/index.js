@@ -8,17 +8,17 @@ import "./style.scss";
 const Select = ({
   selection,
   onChange,
-  name,
+  // name,
   titleEmpty,
   label,
   type = "normal",
 }) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(null);
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange();
     setValue(newValue);
-    setCollapsed(newValue);
+    setCollapsed(!collapsed);
+    onChange(newValue);
   };
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
@@ -49,9 +49,10 @@ const Select = ({
             </>
           )}
         </ul>
-        <input type="hidden" value={value || ""} name={name} />
+        {/* <input type="hidden" value={value || ""} name={name} /> */}
         <button
           type="button"
+          aria-label="Choix"
           data-testid="collapse-button-testid"
           className={collapsed ? "open" : "close"}
           onClick={(e) => {
@@ -84,7 +85,7 @@ const Arrow = () => (
 Select.propTypes = {
   selection: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChange: PropTypes.func,
-  name: PropTypes.string,
+  // name: PropTypes.string,
   titleEmpty: PropTypes.bool,
   label: PropTypes.string,
   type: PropTypes.string,
@@ -95,7 +96,7 @@ Select.defaultProps = {
   titleEmpty: false,
   label: "",
   type: "normal",
-  name: "select",
+  // name: "select",
 }
 
 export default Select;
