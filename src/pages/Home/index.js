@@ -1,3 +1,4 @@
+// import { useState } from "react";
 import Menu from "../../containers/Menu";
 import ServiceCard from "../../components/ServiceCard";
 import EventCard from "../../components/EventCard";
@@ -13,7 +14,8 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+  const { data } = useData()
+
   return <>
     <header>
       <Menu />
@@ -122,13 +124,16 @@ const Page = () => {
     <footer className="row">
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
-        <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
-          small
-          label="boom"
-        />
+        {data === null ? (
+          "chargement"
+        ) : (
+          <EventCard
+            imageSrc={data?.events[0].cover}
+            title={data?.events[0].title}
+            date={new Date(data?.events[0].date)}
+            small
+            label="boom"
+          />)}
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>
