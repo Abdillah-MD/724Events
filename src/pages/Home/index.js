@@ -61,31 +61,37 @@ const Page = () => {
         <div className="ListContainer">
           <PeopleCard
             imageSrc="/images/stephanie-liverani-Zz5LQe-VSMY-unsplash.png"
+            imageAlt="CEO Samira"
             name="Samira"
             position="CEO"
           />
           <PeopleCard
             imageSrc="/images/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.png"
+            imageAlt="Directeur marketing Jean-baptiste"
             name="Jean-baptiste"
             position="Directeur marketing"
           />
           <PeopleCard
             imageSrc="/images/christina-wocintechchat-com-SJvDxw0azqw-unsplash.png"
+            imageAlt="CXO Alice"
             name="Alice"
             position="CXO"
           />
           <PeopleCard
             imageSrc="/images/jonas-kakaroto-KIPqvvTOC1s-unsplash.png"
+            imageAlt="Animateur Luìs"
             name="Luís"
             position="Animateur"
           />
           <PeopleCard
             imageSrc="/images/amy-hirschi-b3AYk8HKCl0-unsplash1.png"
+            imageAlt="VP animation Christine"
             name="Christine"
             position="VP animation"
           />
           <PeopleCard
             imageSrc="/images/christina-wocintechchat-com-0Zx1bDv5BNY-unsplash.png"
+            imageAlt="VP communication Isabelle"
             name="Isabelle"
             position="VP communication"
           />
