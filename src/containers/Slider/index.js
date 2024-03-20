@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 // import { getMonth } from "../../helpers/Date";
 
@@ -34,7 +34,7 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+        <React.Fragment key={`${byDateDesc[idx].title}`}>
           <article
             key={event.title}
             className={`SlideCard SlideCard--${
@@ -55,16 +55,16 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  key={`${byDateDesc[radioIdx].title}`}
                   type="radio"
                   name="radio-button"
                   checked={index === radioIdx}
-                  onClick={() => handleInputClicked(radioIdx)}
+                  onChange={() => handleInputClicked(radioIdx)}
                 />
               ))}
             </div>
           </div>
-        </>
+        </React.Fragment>
       ))}
     </div>
   );
