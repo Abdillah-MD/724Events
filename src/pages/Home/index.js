@@ -128,8 +128,8 @@ const Page = () => {
           "chargement"
         ) : (
           <EventCard
-            imageSrc={data?.events[0].cover}
-            title={data?.events[0].title}
+            imageSrc={`${data?.events[0].cover}`}
+            title={`${data?.events[0].title}`}
             date={new Date(data?.events[0].date)}
             small
             label="boom"
