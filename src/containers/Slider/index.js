@@ -7,9 +7,9 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  const byDateDesc = data?.focus.sort((evtA, evtB) =>
+  const byDateDesc = data?.focus ? data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
-  );
+  ) : [] // Ajouter un condition ternaire pour voir si data.focus est bien disponible sinon assigné tableau vide
   
 
   // Permet de gérer le défilement automatique du slider chaque 5s
