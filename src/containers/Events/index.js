@@ -35,10 +35,8 @@ const EventList = () => {
   const typeList = new Set(data?.events.map((event) => event.type));
   return (
     <>
-      {error && <div>Ooops il y a eu une erreur !</div>}
-      {data === null ? (
-        "loading"
-      ) : (
+      {error === null ? "loading" : (<div>Ooops il y a eu une erreur !</div>)}
+      {data && (
         <>
           <h3 className="SelectTitle">Catégories</h3>
           <Select
