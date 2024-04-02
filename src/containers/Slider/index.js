@@ -13,19 +13,12 @@ const Slider = () => {
   
 
   // Permet de gérer le défilement automatique du slider chaque 5s
-  let timoutId
   const nextCard = () => {
-    timoutId = setTimeout(
+    setTimeout(
       () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
       5000
     );
   };
-
-  // Permet de gérer l'état clicked du bouton 
-  const handleInputClicked = (radioIdx) => {
-    setIndex(radioIdx)
-    clearTimeout(timoutId)
-  }
 
   // Gérer le rendu
   useEffect(() => {
@@ -59,7 +52,7 @@ const Slider = () => {
                   type="radio"
                   name="radio-button"
                   checked={index === radioIdx}
-                  onChange={() => handleInputClicked(radioIdx)}
+                  readOnly
                 />
               ))}
             </div>
